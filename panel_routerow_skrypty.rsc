@@ -1,10 +1,12 @@
 # CZYSZCZENIE
-:do {/system script remove [find name~"panel_routerow"]} on-error={};
+:do {/system script add owner=admin name=panel_routerow_dhcp_dodawanie} on-error={};
+:do {/system script add owner=admin name=panel_routerow_wifi} on-error={};
+:do {/system script add owner=admin name=panel_routerow_wifi_6_dodawanie} on-error={};
+:do {/system script add owner=admin name=panel_routerow_wifi_7_dodawanie} on-error={};
 :do {/system scheduler remove [find name~"panel_routerow"]} on-error={};
-
 # DODAJE SKRYPTY
 /system script
-add dont-require-permissions=no name=panel_routerow_dhcp_dodawanie owner=\
+set panel_routerow_dhcp_dodawanie owner=\
     admin policy=\
     ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon source="#\
     \r\
@@ -101,7 +103,7 @@ add dont-require-permissions=no name=panel_routerow_dhcp_dodawanie owner=\
     \n} else={:log error message=\"[dhcp][blad] nie ma pliku dhcp\"}\r\
     \n:delay 1ms;\r\
     \n}"
-add dont-require-permissions=no name=panel_routerow_wifi owner=\
+set panel_routerow_wifi owner=\
     admin policy=\
     ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon source="#\
     \r\
@@ -111,7 +113,7 @@ add dont-require-permissions=no name=panel_routerow_wifi owner=\
     \") do={/system script run panel_routerow_wifi_6_dodawanie}\r\
     \n:if ([:pick [[/system package update get installed-version] 0 1]] = \"7\
     \") do={/system script run panel_routerow_wifi_7_dodawanie}"
-add dont-require-permissions=no name=panel_routerow_wifi_6_dodawanie owner=\
+set panel_routerow_wifi_6_dodawanie owner=\
     admin policy=\
     ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon source="#\
     \r\
@@ -212,7 +214,7 @@ add dont-require-permissions=no name=panel_routerow_wifi_6_dodawanie owner=\
     \n:delay 1ms;\r\
     \n}\r\
     \n"
-add dont-require-permissions=no name=panel_routerow_wifi_7_dodawanie owner=\
+set panel_routerow_wifi_7_dodawanie owner=\
     admin policy=\
     ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon source="#\
     \r\
