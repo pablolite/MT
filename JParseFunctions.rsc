@@ -1,4 +1,6 @@
+# CZYSZCZENIE
 :do {/system script add owner=admin name=JParseFunctions} on-error={};
+# DODAJE SKRYPTY
 /system script set owner=admin JParseFunctions source="# -------------------------------- JParseFunctions -----------------------------------------\
     ----------\r\
     \n# ------------------------------- fJParsePrint ----------------------------------------------------------------\r\
