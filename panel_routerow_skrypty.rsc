@@ -76,7 +76,7 @@ set panel_routerow_dhcp_dodawanie owner=\
     \n#\t\t:put \"-ip>\$ip<-\"\r\
     \n# proba zweryfikowania odczytanych parametrow z ustawieniami w routerze\
     \r\
-    \n\t\t:do {:set dhcp [/ip dhcp-server lease get [find mac-address=\"\$mac\
+    \n\t\t:do {:set dhcp [/ip dhcp-server lease get [find address=\"\$ip\
     \" disabled=\$active dynamic=no comment=\"\$nazwa\" server=\$siec] address\
     ];} on-error={};\r\
     \n# weryfikuje czy dane IP ma juz statyczny wpis dla podanego MAC\r\
@@ -84,8 +84,8 @@ set panel_routerow_dhcp_dodawanie owner=\
     \n# jezeli nie to usuwa taki MAC w tablicy i dodaje prawidlowy wpis\r\
     \n\t\t\t\t\t\t\t\t:log info message=\"[dhcp][dodaje] \$ckk | \$mac --> \$i\
     p\"\r\
-    \n\t\t\t\t\t\t\t\t:do {/ip dhcp-server lease remove numbers=[find mac-addr\
-    ess=\$mac]} on-error={};\r\
+    \n\t\t\t\t\t\t\t\t:do {/ip dhcp-server lease remove numbers=[find addr\
+    ess=\$ip]} on-error={};\r\
     \n\t\t\t\t\t\t\t\t:do {/ip dhcp-server lease add address=\$ip comment=\"\$\
     nazwa\" mac-address=\$mac server=\$siec disabled=\$active} on-error={};\r\
     \n\t\t\t\t\t\t\t\t:local dhcp 0;\r\
